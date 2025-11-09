@@ -270,11 +270,6 @@ class NessieClient {
     });
   }
 
-  // ==================== UTILITY METHODS ====================
-
-  /**
-   * Process a donation from donor to NGO
-   */
   async processDonation(
     donorAccountId: string,
     ngoAccountId: string,
@@ -308,17 +303,13 @@ class NessieClient {
     }
   }
 
-  /**
-   * Get account balance
-   */
+  
   async getAccountBalance(accountId: string): Promise<number> {
     const account = await this.getAccount(accountId);
     return account.balance;
   }
 
-  /**
-   * Verify sufficient funds for donation
-   */
+
   async verifySufficientFunds(
     accountId: string,
     amount: number
@@ -328,8 +319,6 @@ class NessieClient {
   }
 }
 
-// Export singleton instance
 export const nessieClient = new NessieClient();
 
-// Export class for custom instances
 export default NessieClient;

@@ -20,72 +20,72 @@ export async function POST(request: NextRequest) {
 
     switch (analysisType) {
       case "category-suggestions":
-        prompt = `You are an AI assistant for RichImpact.ai analyzing a charity campaign.
+        prompt = `You are an AI assistant for ConTrust analyzing a charity campaign.
 
-Campaign: ${campaignData.title}
-Current Categories: ${campaignData.categories.map((c: any) => c.name).join(", ")}
+    Campaign: ${campaignData.title}
+    Current Categories: ${campaignData.categories.map((c: any) => c.name).join(", ")}
 
-Based on similar successful campaigns and current trends, suggest 2-3 additional spending categories that could improve this campaign's effectiveness.
+    Based on similar successful campaigns and current trends, suggest 2-3 additional spending categories that could improve this campaign's effectiveness.
 
-Return ONLY a JSON array of category suggestions:
-[
-  {
-    "name": "string",
-    "reason": "string (why this category would be beneficial)",
-    "suggestedAmount": number
-  }
-]`;
-        break;
+    Return ONLY a JSON array of category suggestions:
+    [
+      {
+        "name": "string",
+        "reason": "string (why this category would be beneficial)",
+        "suggestedAmount": number
+      }
+    ]`;
+            break;
 
-      case "fraud-detection":
-        prompt = `You are a fraud detection AI for RichImpact.ai.
+          case "fraud-detection":
+            prompt = `You are a fraud detection AI for RichImpact.ai.
 
-Campaign Data:
-${JSON.stringify(campaignData, null, 2)}
+    Campaign Data:
+    ${JSON.stringify(campaignData, null, 2)}
 
-Analyze for:
-1. Unusual spending patterns
-2. Mismatched raised vs spent amounts
-3. Suspicious category allocations
-4. Any red flags
+    Analyze for:
+    1. Unusual spending patterns
+    2. Mismatched raised vs spent amounts
+    3. Suspicious category allocations
+    4. Any red flags
 
-Return ONLY a JSON object:
-{
-  "fraudRisk": "low" | "medium" | "high",
-  "issues": [
+    Return ONLY a JSON object:
     {
-      "severity": "low" | "medium" | "high",
-      "category": "string",
-      "issue": "string",
-      "recommendation": "string"
-    }
-  ]
-}`;
-        break;
+      "fraudRisk": "low" | "medium" | "high",
+      "issues": [
+        {
+          "severity": "low" | "medium" | "high",
+          "category": "string",
+          "issue": "string",
+          "recommendation": "string"
+        }
+      ]
+    }`;
+            break;
 
-      case "optimization":
-        prompt = `You are an optimization AI for RichImpact.ai.
+          case "optimization":
+            prompt = `You are an optimization AI for RichImpact.ai.
 
-Campaign Data:
-${JSON.stringify(campaignData, null, 2)}
+    Campaign Data:
+    ${JSON.stringify(campaignData, null, 2)}
 
-Analyze and provide:
-1. Budget reallocation suggestions
-2. Timing recommendations
-3. Fundraising strategy improvements
-4. Impact maximization tips
+    Analyze and provide:
+    1. Budget reallocation suggestions
+    2. Timing recommendations
+    3. Fundraising strategy improvements
+    4. Impact maximization tips
 
-Return ONLY a JSON object:
-{
-  "optimizations": [
+    Return ONLY a JSON object:
     {
-      "type": "budget" | "timing" | "strategy" | "impact",
-      "title": "string",
-      "description": "string",
-      "expectedImprovement": "string (e.g., '15% increase in donations')"
-    }
-  ]
-}`;
+      "optimizations": [
+        {
+          "type": "budget" | "timing" | "strategy" | "impact",
+          "title": "string",
+          "description": "string",
+          "expectedImprovement": "string (e.g., '15% increase in donations')"
+        }
+      ]
+    }`;
         break;
 
       default:
@@ -99,7 +99,6 @@ Return ONLY a JSON object:
     const response = await result.response;
     let text = response.text();
 
-    // Clean up the response
     text = text.replace(/```json/g, "").replace(/```/g, "").trim();
 
     const analysis = JSON.parse(text);
@@ -108,7 +107,6 @@ Return ONLY a JSON object:
   } catch (error: any) {
     console.error("Error in AI analysis:", error);
     
-    // Return fallback responses based on analysis type
     const { analysisType } = await request.json();
     
     if (analysisType === "category-suggestions") {

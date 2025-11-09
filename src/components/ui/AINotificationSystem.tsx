@@ -169,7 +169,6 @@ export function useAINotifications() {
     };
     setNotifications((prev) => [...prev, newNotification]);
 
-    // Auto-dismiss low priority notifications after 10 seconds
     if (notification.priority === "low") {
       setTimeout(() => {
         dismissNotification(newNotification.id);

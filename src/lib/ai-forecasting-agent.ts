@@ -101,9 +101,7 @@ Respond ONLY with valid JSON, no markdown.
     }
   }
 
-  /**
-   * Detect fraudulent donations or suspicious patterns
-   */
+
   async detectFraud(data: {
     transactions: Array<{
       id: string;
@@ -157,9 +155,6 @@ Respond ONLY with valid JSON, no markdown.
     }
   }
 
-  /**
-   * Optimize campaign structure and budget allocation
-   */
   async optimizeCampaign(data: {
     campaignGoal: number;
     categories: Array<{ name: string; plannedAmount: number }>;
@@ -217,9 +212,6 @@ Respond ONLY with valid JSON, no markdown.
     }
   }
 
-  /**
-   * Run Monte Carlo simulation for impact prediction
-   */
   async simulateImpact(data: {
     campaignBudget: number;
     categories: Array<{ name: string; amount: number; impactMetric: string }>;
@@ -282,9 +274,7 @@ Respond ONLY with valid JSON, no markdown.
     }
   }
 
-  /**
-   * Analyze spending patterns and predict future expenses
-   */
+  
   async predictSpending(data: {
     categoryBudget: number;
     historicalSpending: Array<{ date: string; amount: number; category: string }>;

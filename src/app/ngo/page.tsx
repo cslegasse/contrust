@@ -7,9 +7,10 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Progress } from "@/components/ui/Progress";
-import { Sparkles, Plus, ArrowLeft, Brain, TrendingUp, BarChart3 } from "lucide-react";
+import { Shield, Plus, ArrowLeft, Brain, TrendingUp, BarChart3, Activity, Target, Award } from "lucide-react";
 import AnalyticsDashboard from "@/components/ui/AnalyticsDashboard";
-import AINotificationSystem, { useAINotifications } from "@/components/ui/AINotificationSystem";
+import AINotificationSystem, { useAINotifications } from "@/components//ui/AINotificationSystem";
+import { AIAgent } from "@/components/ai-agents";
 
 interface Category {
   name: string;
@@ -75,21 +76,33 @@ export default function NGOPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:from-gray-900 dark:via-gray-800 dark:to-emerald-900">
       <nav className="sticky top-0 z-50 backdrop-blur-lg bg-white/70 dark:bg-gray-900/70 border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center gap-2">
-              <Sparkles className="h-8 w-8 text-blue-600" />
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                RichImpact.ai
+              <motion.div
+                animate={{ 
+                  rotate: [0, 5, -5, 0],
+                  scale: [1, 1.05, 1, 1.05, 1]
+                }}
+                transition={{ 
+                  duration: 3,
+                  repeat: Infinity,
+                  repeatDelay: 2
+                }}
+              >
+                <Shield className="h-8 w-8 text-emerald-600" />
+              </motion.div>
+              <span className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                Contrust
               </span>
             </Link>
             <div className="flex gap-4">
               <Button variant="ghost" asChild>
                 <Link href="/"><ArrowLeft className="h-4 w-4 mr-2" />Back</Link>
               </Button>
-              <Button asChild>
+              <Button asChild className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700">
                 <Link href="/donor">Donate</Link>
               </Button>
             </div>
@@ -104,18 +117,18 @@ export default function NGOPage() {
           className="mb-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
         >
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              NGO Dashboard
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+              Organization Dashboard
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300">
-              Manage your campaigns with AI-powered insights
+              Manage smart contracts with AI-powered insights
             </p>
           </div>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button asChild size="lg" className="flex items-center gap-2">
+            <Button asChild size="lg" className="flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700">
               <Link href="/ngo/new">
                 <Plus className="h-5 w-5" />
-                Create New Campaign
+                Create Smart Contract
               </Link>
             </Button>
           </motion.div>
@@ -126,9 +139,9 @@ export default function NGOPage() {
             <Brain className="h-16 w-16 text-gray-400 mx-auto mb-4" />
             <h3 className="text-2xl font-semibold mb-2">No campaigns yet</h3>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
-              Create your first campaign with AI-powered forecasting
+              Create your first smart contract campaign with AI-powered verification
             </p>
-            <Button asChild>
+            <Button asChild className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700">
               <Link href="/ngo/new">Create Campaign</Link>
             </Button>
           </Card>
@@ -141,18 +154,22 @@ export default function NGOPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="p-6 md:p-8 shadow-xl border-2">
+                <Card className="p-6 md:p-8 shadow-xl border-2 border-emerald-100 dark:border-emerald-900">
                   <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
                     <div>
                       <h2 className="text-2xl md:text-3xl font-bold mb-2">{campaign.title}</h2>
                       <div className="flex flex-wrap gap-2">
-                        <Badge variant="secondary" className="flex items-center gap-1">
+                        <Badge className="flex items-center gap-1 bg-gradient-to-r from-emerald-600 to-teal-600">
                           <Brain className="h-3 w-3" />
-                          AI Optimized
+                          AI Verified
                         </Badge>
-                        <Badge variant="outline" className="flex items-center gap-1">
+                        <Badge variant="outline" className="flex items-center gap-1 border-green-600 text-green-600">
                           <TrendingUp className="h-3 w-3" />
                           Active
+                        </Badge>
+                        <Badge variant="outline" className="flex items-center gap-1 border-emerald-600 text-emerald-600">
+                          <Target className="h-3 w-3" />
+                          Smart Contract
                         </Badge>
                       </div>
                     </div>
@@ -160,9 +177,9 @@ export default function NGOPage() {
                       <Button
                         variant={showAnalytics ? "secondary" : "default"}
                         onClick={() => setShowAnalytics(!showAnalytics)}
-                        className="flex items-center gap-2"
+                        className={showAnalytics ? "" : "bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700"}
                       >
-                        <BarChart3 className="h-4 w-4" />
+                        <BarChart3 className="h-4 w-4 mr-2" />
                         {showAnalytics ? "Hide Analytics" : "View AI Analytics"}
                       </Button>
                     </motion.div>
@@ -191,36 +208,61 @@ export default function NGOPage() {
                     </motion.div>
                   ) : (
                     <div className="space-y-4">
-                      <h3 className="font-semibold text-lg">Categories</h3>
-                      {campaign.categories.map((category, catIndex) => (
-                        <motion.div
-                          key={catIndex}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: catIndex * 0.05 }}
-                          className="p-4 rounded-lg border bg-card"
-                        >
-                          <h4 className="font-semibold text-lg mb-2">{category.name}</h4>
-                          <div className="grid grid-cols-3 gap-4 text-sm">
-                            <div>
-                              <p className="text-muted-foreground">Budget</p>
-                              <p className="font-medium">${category.amount.toLocaleString()}</p>
+                      <h3 className="font-semibold text-lg flex items-center gap-2">
+                        <Award className="h-5 w-5 text-emerald-600" />
+                        Smart Contract Categories
+                      </h3>
+                      {campaign.categories.map((category, catIndex) => {
+                        const progress = (category.raised / category.amount) * 100;
+                        const spentPercent = (category.spent / category.raised) * 100;
+                        
+                        return (
+                          <motion.div
+                            key={catIndex}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: catIndex * 0.05 }}
+                            className="p-4 rounded-lg border-2 border-emerald-100 dark:border-emerald-900 bg-card hover:border-emerald-300 dark:hover:border-emerald-700 transition-colors"
+                          >
+                            <div className="flex justify-between items-start mb-3">
+                              <h4 className="font-semibold text-lg">{category.name}</h4>
+                              <Badge variant="outline" className="text-xs">
+                                {progress.toFixed(1)}% funded
+                              </Badge>
                             </div>
-                            <div>
-                              <p className="text-muted-foreground">Raised</p>
-                              <p className="font-medium text-green-600">${category.raised.toLocaleString()}</p>
+                            <div className="grid grid-cols-3 gap-4 text-sm mb-3">
+                              <div>
+                                <p className="text-muted-foreground">Budget</p>
+                                <p className="font-medium">${category.amount.toLocaleString()}</p>
+                              </div>
+                              <div>
+                                <p className="text-muted-foreground">Raised</p>
+                                <p className="font-medium text-green-600">${category.raised.toLocaleString()}</p>
+                              </div>
+                              <div>
+                                <p className="text-muted-foreground">Spent</p>
+                                <p className="font-medium text-teal-600">${category.spent.toLocaleString()}</p>
+                              </div>
                             </div>
-                            <div>
-                              <p className="text-muted-foreground">Spent</p>
-                              <p className="font-medium text-blue-600">${category.spent.toLocaleString()}</p>
+                            <div className="space-y-2">
+                              <div>
+                                <div className="flex justify-between text-xs mb-1">
+                                  <span className="text-muted-foreground">Fundraising Progress</span>
+                                  <span className="font-semibold text-emerald-600">{progress.toFixed(1)}%</span>
+                                </div>
+                                <Progress value={progress} className="h-2" />
+                              </div>
+                              <div>
+                                <div className="flex justify-between text-xs mb-1">
+                                  <span className="text-muted-foreground">Budget Utilization</span>
+                                  <span className="font-semibold text-teal-600">{spentPercent.toFixed(1)}%</span>
+                                </div>
+                                <Progress value={spentPercent} className="h-2" />
+                              </div>
                             </div>
-                          </div>
-                          <Progress 
-                            value={(category.raised / category.amount) * 100} 
-                            className="h-2 mt-3" 
-                          />
-                        </motion.div>
-                      ))}
+                          </motion.div>
+                        );
+                      })}
                     </div>
                   )}
                 </Card>
@@ -238,6 +280,9 @@ export default function NGOPage() {
           dismissNotification(id);
         }}
       />
+      
+      {/* AI Agent */}
+      <AIAgent context="campaign" data={{ campaigns }} />
     </div>
   );
 }

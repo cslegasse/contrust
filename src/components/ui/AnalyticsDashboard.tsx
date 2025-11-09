@@ -167,7 +167,6 @@ export default function AnalyticsDashboard({ campaign }: AnalyticsDashboardProps
         </motion.div>
       </div>
 
-      {/* AI Success Prediction */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -204,7 +203,6 @@ export default function AnalyticsDashboard({ campaign }: AnalyticsDashboardProps
         </Card>
       </motion.div>
 
-      {/* Fraud Alerts */}
       <AnimatePresence>
         {fraudAlerts.length > 0 && (
           <motion.div
@@ -260,7 +258,6 @@ export default function AnalyticsDashboard({ campaign }: AnalyticsDashboardProps
         )}
       </AnimatePresence>
 
-      {/* Spending Patterns */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -305,7 +302,6 @@ export default function AnalyticsDashboard({ campaign }: AnalyticsDashboardProps
         </Card>
       </motion.div>
 
-      {/* AI Recommendations */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
